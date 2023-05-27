@@ -1,6 +1,6 @@
-# `template-react`
+# Redux Toolkit Tutorial (Codevolution)
 
-Template for React repositories
+https://www.youtube.com/playlist?list=PLC3y8-rFHvwiaOAuTtVXittwybYIorRB3
 
 ## Getting started
 
