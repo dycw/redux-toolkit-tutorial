@@ -1,0 +1,3 @@
+[submodule "Redux-Toolkit-Tutorials"]
+	path = Redux-Toolkit-Tutorials
+	url = https://github.com/gopinav/Redux-Toolkit-Tutorials
