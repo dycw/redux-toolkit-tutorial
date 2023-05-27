@@ -24,7 +24,10 @@ type IceCreamState = { numOfIceCreams: number };
 const initialIceCreamState: IceCreamState = { numOfIceCreams: 20 };
 type Action = { type: string; payload: number };
 
-const cakeReducer = (state = initialCakeState, action: Action) => {
+const cakeReducer = (
+  state: CakeState = initialCakeState,
+  action: Action
+): CakeState => {
   switch (action.type) {
     case CAKE_ORDERED:
       return { ...state, numOfCakes: state.numOfCakes - 1 };
@@ -34,7 +37,10 @@ const cakeReducer = (state = initialCakeState, action: Action) => {
       return state;
   }
 };
-const iceCreamReducer = (state = initialIceCreamState, action: Action) => {
+const iceCreamReducer = (
+  state: IceCreamState = initialIceCreamState,
+  action: Action
+): IceCreamState => {
   switch (action.type) {
     case ICECREAM_ORDERED:
       return { ...state, numOfIceCreams: state.numOfIceCreams - 1 };
