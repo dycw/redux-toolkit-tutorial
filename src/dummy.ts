@@ -10,15 +10,18 @@ const orderCake = () => {
   return { type: CAKE_ORDERED, payload: 1 };
 };
 const restockCake = (qty = 1) => {
-  return { type: CAKE_ORDERED, payload: qty };
+  return { type: CAKE_RESTOCKED, payload: qty };
 };
 
-const reducer = (state = initialState, action: { type: string }) => {
+const reducer = (
+  state = initialState,
+  action: { type: string; payload: number }
+) => {
   switch (action.type) {
     case CAKE_ORDERED:
       return { ...state, numOfCakes: state.numOfCakes - 1 };
     case CAKE_RESTOCKED:
-      return { ...state, numOfCakes: state.numOfCakes + 1 };
+      return { ...state, numOfCakes: state.numOfCakes + action.payload };
     default:
       return state;
   }
