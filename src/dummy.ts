@@ -1,21 +1,24 @@
 import { createStore } from "redux";
 
 const CAKE_ORDERED = "CAKE_ORDERED";
+const CAKE_RESTOCKED = "CAKE_RESTOCKED";
+
+type State = { numOfCakes: number };
+const initialState: State = { numOfCakes: 10 };
 
 const orderCake = () => {
-  return { type: CAKE_ORDERED, quantity: 1 };
+  return { type: CAKE_ORDERED, payload: 1 };
+};
+const restockCake = (qty = 1) => {
+  return { type: CAKE_ORDERED, payload: qty };
 };
 
-console.log(orderCake);
-
-const initialState = { numOfCakes: 10 };
-
-type Action = { type: string };
-
-const reducer = (state = initialState, action: Action) => {
+const reducer = (state = initialState, action: { type: string }) => {
   switch (action.type) {
     case CAKE_ORDERED:
       return { ...state, numOfCakes: state.numOfCakes - 1 };
+    case CAKE_RESTOCKED:
+      return { ...state, numOfCakes: state.numOfCakes + 1 };
     default:
       return state;
   }
@@ -23,3 +26,14 @@ const reducer = (state = initialState, action: Action) => {
 
 const store = createStore(reducer);
 console.log("Initial state", store.getState());
+
+const unsubscribe = store.subscribe(() =>
+  console.log("Update state ", store.getState())
+);
+
+store.dispatch(orderCake());
+store.dispatch(orderCake());
+store.dispatch(orderCake());
+store.dispatch(restockCake(3));
+
+unsubscribe();
